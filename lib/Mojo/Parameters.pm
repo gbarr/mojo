@@ -44,6 +44,7 @@ sub clone {
     my $self  = shift;
     my $clone = Mojo::Parameters->new;
     $clone->params([@{$self->params}]);
+    $clone->pair_separator($self->pair_separator);
     return $clone;
 }
 
