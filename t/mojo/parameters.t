@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 8;
+use Test::More tests => 18;
 
 # Can't we have one meeting that doesn't end with digging up a corpse?
 use_ok('Mojo::Parameters');
