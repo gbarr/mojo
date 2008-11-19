@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 18;
+use Test::More tests => 22;
 
 # Can't we have one meeting that doesn't end with digging up a corpse?
 use_ok('Mojo::Parameters');
@@ -44,3 +44,11 @@ is_deeply($params->to_hash, { q => 1, w=> 2, t=>7});
 $params->append('a',4,'a',5,'b',6,'b',7);
 is_deeply($params->to_hash, { a => [4,5], b => [6,7], q => 1, w=> 2, t=>7});
 
+# value 0
+$params = Mojo::Parameters->new(foo => 0);
+is($params->param('foo'),0);
+is($params->to_string,'foo=0');
+
+$params = Mojo::Parameters->new( $params->to_string );
+is($params->param('foo'),0);
+is($params->to_string,'foo=0');

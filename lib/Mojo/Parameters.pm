@@ -23,7 +23,7 @@ sub new {
     my $self = shift->SUPER::new();
 
     # Hash/Array
-    if ($_[1]) { $self->append(@_) }
+    if (defined $_[1]) { $self->append(@_) }
 
     # String
     else { $self->parse(@_) }
@@ -170,7 +170,7 @@ sub to_string {
     my @params;
     for (my $i = 0; $i < @$params; $i += 2) {
         my $name = $params->[$i];
-        my $value = $params->[$i + 1] || undef;
+        my $value = $params->[$i + 1];
 
         # We replace whitespace with "+"
         $name =~ s/\ /\+/g;
