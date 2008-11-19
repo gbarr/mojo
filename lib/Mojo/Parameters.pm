@@ -95,6 +95,7 @@ sub parse {
     }
 
     my @new_params;
+
     # W3C suggests to also accept ";" as a separator
     for my $pair (split /[\&\;]+/, $_[0]) {
 
@@ -118,8 +119,13 @@ sub remove {
 
     # Remove
     my $params = $self->params;
-    for (my $i = 0; $i < @$params; $i += 2) {
-        splice @$params, $i, 2 if $params->[$i] eq $name;
+    for (my $i = 0; $i < @$params;) {
+        if ($params->[$i] eq $name) {
+            splice @$params, $i, 2;
+        }
+        else {
+            $i += 2;
+        }
     }
 
     return $self;
