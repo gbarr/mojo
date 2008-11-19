@@ -94,6 +94,7 @@ sub parse {
         return $self;
     }
 
+    my @new_params;
     # W3C suggests to also accept ";" as a separator
     for my $pair (split /[\&\;]+/, $_[0]) {
 
@@ -105,8 +106,9 @@ sub parse {
         my $name  = $1;
         my $value = $2;
 
-        push @{$self->params}, $name, $value;
+        push @new_params, $name, $value;
     }
+    $self->params(\@new_params);
 
     return $self;
 }
